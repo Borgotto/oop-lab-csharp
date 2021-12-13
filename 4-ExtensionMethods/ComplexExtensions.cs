@@ -1,4 +1,5 @@
 using System;
+using static System.Math;
 
 namespace ExtensionMethods
 {
@@ -15,7 +16,7 @@ namespace ExtensionMethods
         /// <returns>the sum.</returns>
         public static IComplex Add(this IComplex c1, IComplex c2)
         {
-            throw new NotImplementedException();
+            return new Complex(c1.Real + c2.Real, c1.Imaginary + c2.Imaginary);
         }
 
         /// <summary>
@@ -26,7 +27,7 @@ namespace ExtensionMethods
         /// <returns>the difference.</returns>
         public static IComplex Subtract(this IComplex c1, IComplex c2)
         {
-            throw new NotImplementedException();
+            return new Complex(c1.Real - c2.Real, c1.Imaginary - c2.Imaginary);
         }
 
         /// <summary>
@@ -37,7 +38,9 @@ namespace ExtensionMethods
         /// <returns>the product.</returns>
         public static IComplex Multiply(this IComplex c1, IComplex c2)
         {
-            throw new NotImplementedException();
+            return new Complex(
+                c1.Real * c2.Real - c1.Imaginary * c2.Imaginary,
+                c1.Real * c2.Imaginary + c1.Imaginary * c2.Real);
         }
 
         /// <summary>
@@ -48,7 +51,7 @@ namespace ExtensionMethods
         /// <returns>the quotient.</returns>
         public static IComplex Divide(this IComplex c1, IComplex c2)
         {
-            throw new NotImplementedException();
+            return Multiply(c1, c2.Reciprocal());
         }
 
         /// <summary>
@@ -64,7 +67,7 @@ namespace ExtensionMethods
         /// <returns>the complex conjugate.</returns>
         public static IComplex Conjugate(this IComplex c1)
         {
-            throw new NotImplementedException();
+            return new Complex(c1.Real, -c1.Imaginary);
         }
 
         /// <summary>
@@ -80,7 +83,7 @@ namespace ExtensionMethods
         /// <returns>the complex reciprocal.</returns>
         public static IComplex Reciprocal(this IComplex c1)
         {
-            throw new NotImplementedException();
+            return new Complex(c1.Real * 1.0/Pow(c1.Modulus,2), -c1.Imaginary * 1.0 / Pow(c1.Modulus, 2));
         }
     }
 }
